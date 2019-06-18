@@ -24,7 +24,7 @@ module.exports = app => {
 
     deleteUser = (req, res) => {
         userDao.deleteUser(req.params['userId'])
-            .then(() => console.log(req.params['userId'] + "done had been deleted"));
+            .then(status => res.send(status));
     }
 
     updateUser = (req, res) => {
