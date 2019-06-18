@@ -4,7 +4,7 @@ const userSchema = mongoose.Schema({
     password: String,
     firstName: String,
     lastName: String,
-    currentPartyId: Number,
+    currentPartyId: String,
     userType: {type: String, enum: ['DJ', 'LISTENER']},
     dob: String,
     profilePicturePath: String,

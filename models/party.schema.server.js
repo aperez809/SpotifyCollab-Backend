@@ -11,11 +11,11 @@ const partySchema = mongoose.Schema({
         required:true
     },
     songVotes: {
-        type: {
+        type: [{
             song: String,
             upvotes: [User], 
             downvotes: [User]
-        }, 
+        }], 
         required:true
     }, 
     passwordReq: {
