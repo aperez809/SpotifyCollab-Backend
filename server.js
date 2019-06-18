@@ -20,6 +20,10 @@ const userDao = require('./dao/user.dao.server');
 const userService = require('./services/user.service.server');
 userService(app);
 
+const partyDao = require('./dao/party.dao.server');
+const partyService = require('./services/party.service.server');
+partyService(app);
+
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin",
@@ -32,5 +36,4 @@ app.use(function(req, res, next) {
     next();
  });
 
- app.get("/", userDao.findAllUsers);
 app.listen(3001);
