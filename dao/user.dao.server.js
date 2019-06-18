@@ -1,24 +1,35 @@
 const userModel = require('../models/user.model.server');
 
 
-createUser = (req, res) => {
-    
+createUser = (user) => {
+    return userModel.create(user)
 }
 
-findUserById = (req, res) => {
-    
+findUserById = (id) => {
+    return userModel.findById(id); 
 }
 
-findAllUsers = (req, res) => {
-    
+findAllUsers = () => {
+    return userModel.find();
 }
 
-deleteUser = (req, res) => {
-    
+deleteUser = (id) => {
+    return userModel.findByIdAndDelete(id);
 }
 
-updateUser = (req, res) => {
+updateUser = (id, user) => {
+    return userModel.updateOne({_id: id}, {$set: user});
     
+    /*return userModel.findByIdAndUpdate(
+        id, 
+        {
+            'username': user.username,
+            'password': user.password,
+            'firstName': user.firstName,
+            'lastName': user.lastName,
+            'currentPartyId': user.currentPartyId,
+            'userType': user.userType,
+        });*/
 }
 
 module.exports = {

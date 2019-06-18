@@ -3,5 +3,5 @@ module.exports = function() {
     const databaseName = "song-request";
     var connectionString = 'mongodb://localhost/';
     connectionString += databaseName;
-    mongoose.connect(connectionString);
+    mongoose.connect(connectionString, { useNewUrlParser: true });
 }

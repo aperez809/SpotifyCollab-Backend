@@ -7,6 +7,6 @@ const userSchema = mongoose.Schema({
     currentPartyId: Number,
     userType: {type: String, enum: ['DJ', 'LISTENER']}
 
-}, {collection: 'user'});
+}, {collection: 'Users'});
 
 module.exports = userSchema;
