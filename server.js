@@ -10,7 +10,7 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     secret: 'any string',
-    store: new MongoStore(options)
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 app.use(bodyParser.json());
