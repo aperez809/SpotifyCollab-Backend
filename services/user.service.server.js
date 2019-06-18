@@ -15,6 +15,13 @@ module.exports = app => {
             });
     }
 
+    findUserByCredentials = (req, res) => {
+        userDao.findUserByCredentials(req.body['username'], req.body['password'])
+            .then(user => {
+                res.send(user);
+            });
+    }
+
     findAllUsers = (req, res) => {
         userDao.findAllUsers()
             .then(users => {

@@ -9,6 +9,10 @@ findUserById = (id) => {
     return userModel.findById(id); 
 }
 
+findUserByCredentials = (un, pw) => {
+    return userModel.findOne({username: un, password: pw});
+}
+
 findAllUsers = () => {
     return userModel.find();
 }
@@ -19,22 +23,12 @@ deleteUser = (id) => {
 
 updateUser = (id, user) => {
     return userModel.updateOne({_id: id}, {$set: user});
-    
-    /*return userModel.findByIdAndUpdate(
-        id, 
-        {
-            'username': user.username,
-            'password': user.password,
-            'firstName': user.firstName,
-            'lastName': user.lastName,
-            'currentPartyId': user.currentPartyId,
-            'userType': user.userType,
-        });*/
 }
 
 module.exports = {
     createUser,
     findAllUsers,
+    findUserByCredentials,
     findUserById,
     deleteUser,
     updateUser
