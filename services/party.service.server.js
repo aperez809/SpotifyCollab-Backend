@@ -15,8 +15,8 @@ module.exports = app => {
             });
     }
 
-    findAllPartys = (req, res) => {
-        partyDao.findAllPartys()
+    findAllParties = (req, res) => {
+        partyDao.findAllParties()
             .then(parties => {
                 res.send(parties);
             });
@@ -36,7 +36,7 @@ module.exports = app => {
             });
     }
 
-    app.get('/api/parties', findAllPartys);
+    app.get('/api/parties', findAllParties);
     app.get('/api/parties/:partyId', findPartyById);
     app.post('/api/parties', createParty);
     app.delete('/api/parties/:partyId', deleteParty);
