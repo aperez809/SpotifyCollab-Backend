@@ -4,13 +4,14 @@ var session = require('express-session');
 
 const app = express();
 
+const MongoStore = require('connect-mongo')(session);
+
 app.use(session({
     resave: false,
     saveUninitialized: true,
-    secret: 'any string'
+    secret: 'any string',
+    store: new MongoStore(options)
 }));
-
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
