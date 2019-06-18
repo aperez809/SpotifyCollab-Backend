@@ -4,16 +4,18 @@ var session = require('express-session');
 
 const app = express();
 
-/*app.use(session({
+app.use(session({
     resave: false,
     saveUninitialized: true,
     secret: 'any string'
 }));
-*/
+
 
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
+
+require('./services/session.service.server')(app);
 
 require('./db/database')();
 const userDao = require('./dao/user.dao.server');
