@@ -5,7 +5,12 @@ const userSchema = mongoose.Schema({
     firstName: String,
     lastName: String,
     currentPartyId: Number,
-    userType: {type: String, enum: ['DJ', 'LISTENER']}
+    userType: {type: String, enum: ['DJ', 'LISTENER']},
+    dob: String,
+    profilePicturePath: String,
+    spotifyUser: Boolean,
+    spotifyUsername: String,
+    spotifyUrl: String
 
 }, {collection: 'Users'});
 
