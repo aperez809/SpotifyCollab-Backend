@@ -17,8 +17,6 @@ app.use(session({
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
-require('./services/session.service.server')(app);
-
 require('./db/database')();
 const userDao = require('./dao/user.dao.server');
 const userService = require('./services/user.service.server');
@@ -28,10 +26,11 @@ const partyDao = require('./dao/party.dao.server');
 const partyService = require('./services/party.service.server');
 partyService(app);
 
+require('./services/session.service.server')(app);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin",
-        "http://localhost:4200");
+        "*");
     /*res.header("Access-Control-Allow-Origin",
         "https://song-request-client-angular.herokuapp.com");*/
     res.header("Access-Control-Allow-Headers",
