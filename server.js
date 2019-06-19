@@ -31,7 +31,7 @@ partyService(app);
 
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin",
-        "http://localhost:4200");
+        "http://localhost:4200/*");
     /*res.header("Access-Control-Allow-Origin",
         "https://song-request-client-angular.herokuapp.com");*/
     res.header("Access-Control-Allow-Headers",
