@@ -28,9 +28,6 @@ partyService(app);
 
 require('./services/session.service.server')(app);
 
-const cors = require('cors');
-app.use(cors({origin: "http://localhost:4200"}))
-
 app.use(function(req, res, next) {
     /*res.header("Access-Control-Allow-Origin",
         "https://song-request-client-angular.herokuapp.com");*/
