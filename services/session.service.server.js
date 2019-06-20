@@ -21,7 +21,7 @@ module.exports = app => {
         res.send(200);
     }
 
-    app.get('/api/session/set/:name/:value', setSession);
+    app.post('/api/session/set/:name/:value', setSession);
     app.get('/api/session/get/:name', getSession);
     app.get('/api/session/get', getSessionAll);
     app.get('/api/session/reset', resetSession);

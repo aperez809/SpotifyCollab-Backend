@@ -18,6 +18,8 @@ module.exports = app => {
     findUserByCredentials = (req, res) => {
         userDao.findUserByCredentials(req.body['username'], req.body['password'])
             .then(user => {
+                console.log(req);
+                console.log(user);
                 res.send(user);
             });
     }
