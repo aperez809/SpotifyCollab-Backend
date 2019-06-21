@@ -47,7 +47,7 @@ module.exports = app => {
 
     removeUserFromParty = (req, res) => {
         console.log(req.body);
-        partyDao.removeUserFromParty(req.body, req.params['partyId'])
+        partyDao.removeUserFromParty(req.body["userId"], req.params['partyId'])
             .then(status => {
                 console.log(status);
                 res.send(status);
