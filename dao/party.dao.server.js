@@ -24,7 +24,9 @@ updateParty = (id, party) => {
 
 addUserToParty = (userId, partyId) => {
     const userToAdd = userModel.findById(userId);
-    return partyModel.findOneAndUpdate({_id: partyId}, {$push: {attendees: userToAdd}});
+    const listOfAttendees = partyModel.find({_id: partyId}, {attendees: 1});
+    listOfAttendees.push(userToAdd);
+    return partyModel.findOneAndUpdate({_id: partyId}, {$set: {attendees: listOfAttendees}});
 }
 
 removeUserFromParty = (userId, partyId) => {
