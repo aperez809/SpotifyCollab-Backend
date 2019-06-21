@@ -27,11 +27,16 @@ addUserToParty = (userId, partyId) => {
     return partyModel.updateOne({_id: partyId}, {$push: {attendees: userToAdd}});
 }
 
+removeUserFromParty = (userId, partyId) => {
+    return partyModel.update({_id: partyId}, {$pull: {attendees: {_id: userId}}});
+}
+
 module.exports = {
     createParty,
     findAllParties,
     findPartyById,
     deleteParty,
     updateParty,
-    addUserToParty
+    addUserToParty,
+    removeUserFromParty
 }

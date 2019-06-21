@@ -36,9 +36,29 @@ module.exports = app => {
             });
     }
 
+    addUserToParty = (req, res) => {
+        console.log(req.body);
+        partyDao.addUserToParty(req.body, req.params['partyId'])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        })
+    }
+
+    removeUserFromParty = (req, res) => {
+        console.log(req.body);
+        partyDao.removeUserFromParty(req.body, req.params['partyId'])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        })
+    }
+
     app.get('/api/parties', findAllParties);
     app.get('/api/parties/:partyId', findPartyById);
     app.post('/api/parties', createParty);
     app.delete('/api/parties/:partyId', deleteParty);
     app.put('/api/parties/:partyId', updateParty);
+    app.put('/api/parties/addUser/:partyId', addUserToParty);
+    app.put('/api/parties/removeUser/:partyId', removeUserFromParty);
 }
