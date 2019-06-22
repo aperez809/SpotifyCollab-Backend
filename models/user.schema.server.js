@@ -11,6 +11,7 @@ const userSchema = mongoose.Schema({
     spotifyUser: Boolean,
     spotifyUsername: String,
     spotifyUrl: String,
+    recentTracks: {type: [{}]}
 
 }, {collection: 'Users'});
 
