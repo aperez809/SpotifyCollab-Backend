@@ -28,7 +28,6 @@ module.exports = app => {
     }
 
     updateParty = (req, res) => {
-        console.log(req.body);
         partyDao.updateParty(req.params['partyId'], req.body)
             .then(status => {
                 console.log(status);
@@ -45,8 +44,7 @@ module.exports = app => {
     }
 
     removeUserFromParty = (req, res) => {
-        console.log(req.body);
-        partyDao.removeUserFromParty(req.body["userId"], req.params['partyId'])
+        partyDao.removeUserFromParty(req.params["userId"], req.params['partyId'])
             .then(status => {
                 console.log(status);
                 res.send(status);
@@ -60,5 +58,5 @@ module.exports = app => {
     app.delete('/api/parties/:partyId', deleteParty);
     app.put('/api/parties/:partyId', updateParty);
     app.put('/api/parties/:partyId/addUser/:userId', addUserToParty);
-    app.put('/api/parties/removeUser/:partyId', removeUserFromParty);
+    app.put('/api/parties/:partyId/removeUser/:userId', removeUserFromParty);
 }
