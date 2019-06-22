@@ -32,6 +32,13 @@ const partySchema = mongoose.Schema({
     partyLeader: {
         type: User, 
         required:true
+    },
+    queue: {
+        type: [{
+            trackName: String,
+            artistName: String,
+            spotifyId: String,
+        }]
     }
 },
 {collection: 'Parties'});

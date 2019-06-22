@@ -10,7 +10,7 @@ const userSchema = mongoose.Schema({
     profilePicturePath: String,
     spotifyUser: Boolean,
     spotifyUsername: String,
-    spotifyUrl: String
+    spotifyUrl: String,
 
 }, {collection: 'Users'});
 

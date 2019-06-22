@@ -51,12 +51,25 @@ module.exports = app => {
         })
     }
 
+    addSong = (req, res) => {
+        partyDao.addSong(req.params["partyId"],
+                                req.body["spotifyId"],
+                                req.body["trackName"],
+                                req.body["artistName"])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        })
+    }
+
     app.get('/api/parties', findAllParties);
     app.get('/api/parties/:partyId', findPartyById);
     app.post('/api/parties', createParty);
-
     app.delete('/api/parties/:partyId', deleteParty);
     app.put('/api/parties/:partyId', updateParty);
+    
     app.put('/api/parties/:partyId/addUser/:userId', addUserToParty);
     app.put('/api/parties/:partyId/removeUser/:userId', removeUserFromParty);
+    
+    app.put('/api/parties/:partyId/addSong', addSong);
 }
