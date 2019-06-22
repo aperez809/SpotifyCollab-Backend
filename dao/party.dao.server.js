@@ -55,10 +55,21 @@ removeSong = (partyId, sid) => {
 }
 
 setPartyLeader = (partyId, userId) => {
-    return partyModel.update({_id, partyId}, {$set: {partyLeader: userId}});
+    return partyModel.update({_id: partyId}, {$set: {partyLeader: userId}});
+}
+
+upvoteSong = async(partyId, spotifyId, userId) => {
+    var userToAdd = await findUser(userId).then(user => user);
+    return partyModel.update({_id: partyId, 'queue.spotifyId': spotifyId},
+                             {$push: {'queue.$.upvotes': userToAdd}});
 }
 
 
+downvoteSong = async(partyId, spotifyId, userId) => {
+    var userToAdd = await findUser(userId).then(user => user);
+    return partyModel.update({_id: partyId, 'queue.spotifyId': spotifyId},
+                             {$push: {'queue.$.downvotes': userToAdd}});
+}
 module.exports = {
     createParty,
     findAllParties,
@@ -69,5 +80,7 @@ module.exports = {
     removeUserFromParty,
     addSong,
     removeSong,
-    setPartyLeader
+    setPartyLeader,
+    upvoteSong,
+    downvoteSong
 }

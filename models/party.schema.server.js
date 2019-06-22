@@ -10,14 +10,6 @@ const partySchema = mongoose.Schema({
         type: [User], 
         required:true
     },
-    songVotes: {
-        type: [{
-            song: String,
-            upvotes: [User], 
-            downvotes: [User]
-        }], 
-        required:true
-    }, 
     passwordReq: {
         type: Boolean, 
         required:true
@@ -37,7 +29,9 @@ const partySchema = mongoose.Schema({
         type: [{
             trackName: String,
             artistName: String,
-            spotifyId: String}]
+            spotifyId: String,
+            upvotes: [User],
+            downvotes: [User]}]
     }
 },
 {collection: 'Parties'});

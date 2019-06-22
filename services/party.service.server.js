@@ -78,6 +78,23 @@ module.exports = app => {
         })
     }
 
+    upvoteSong = (req, res) => {
+        partyDao.upvoteSong(req.params["partyId"], req.params["spotifyId"], req.body["userId"])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        });
+    }
+
+
+    downvoteSong = (req, res) => {
+        partyDao.downvoteSong(req.params["partyId"], req.params["spotifyId"], req.body["userId"])
+            .then(status => {
+            console.log(status);
+        res.send(status);
+    });
+    }
+
     app.get('/api/parties', findAllParties);
     app.get('/api/parties/:partyId', findPartyById);
     app.post('/api/parties', createParty);
@@ -91,5 +108,8 @@ module.exports = app => {
     app.put('/api/parties/:partyId/removeSong/:spotifyId', removeSong);
     
     app.put('/api/parties/:partyId/setDJ/:userId', setPartyLeader);
+
+    app.put('/api/parties/:partyId/upvoteSong/:spotifyId', upvoteSong);
+    app.put('/api/parties/:partyId/downvoteSong/:spotifyId', downvoteSong);
     
 }
