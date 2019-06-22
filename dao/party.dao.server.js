@@ -22,9 +22,15 @@ updateParty = (id, party) => {
     return partyModel.updateOne({_id: id}, {$set: party});
 }
 
-addUserToParty = (userId, partyId) => {
-    const userToAdd = userModel.findById(userId);
-    return partyModel.findOneAndUpdate({_id: partyId}, {$push: {attendees: userToAdd}});
+addUserToParty = async(userId, partyId) => {
+    var userToAdd = await findUser(userId).then(user => user)
+    return partyModel.findOneAndUpdate({_id: partyId},
+                                {$push: {attendees: userToAdd}},
+                                {new:true, upsert:true});}
+
+
+findUser = (userId) => {
+    return userModel.findById(userId).exec();
 }
 
 removeUserFromParty = (userId, partyId) => {

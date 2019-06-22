@@ -39,6 +39,7 @@ module.exports = app => {
     addUserToParty = (req, res) => {
         partyDao.addUserToParty(req.params['userId'], req.params['partyId'])
             .then(status => {
+                console.log(status);
                 res.send(status);
         })
     }
