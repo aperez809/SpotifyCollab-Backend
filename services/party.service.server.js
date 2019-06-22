@@ -62,6 +62,22 @@ module.exports = app => {
         })
     }
 
+    removeSong = (req, res) => {
+        partyDao.removeSong(req.params["partyId"], req.params["spotifyId"])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        })
+    }
+
+    setPartyLeader = (req, res) => {
+        partyDao.setPartyLeader(req.params["partyId"], req.params["userId"])
+            .then(status => {
+                console.log(status);
+                res.send(status);
+        })
+    }
+
     app.get('/api/parties', findAllParties);
     app.get('/api/parties/:partyId', findPartyById);
     app.post('/api/parties', createParty);
@@ -72,4 +88,8 @@ module.exports = app => {
     app.put('/api/parties/:partyId/removeUser/:userId', removeUserFromParty);
     
     app.put('/api/parties/:partyId/addSong', addSong);
+    app.put('/api/parties/:partyId/removeSong/:spotifyId', removeSong);
+    
+    app.put('/api/parties/:partyId/setDJ/:userId', setPartyLeader);
+    
 }

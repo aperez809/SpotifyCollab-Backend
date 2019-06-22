@@ -1,7 +1,6 @@
 const partyModel = require('../models/party.model.server');
 const userModel = require('../models/user.model.server');
-const mongoose = require('mongoose');
-
+const ObjectId = require('mongoose').Types.ObjectId;
 
 
 createParty = (party) => {
@@ -41,7 +40,7 @@ removeUserFromParty = (userId, partyId) => {
 
 addSong = (partyId, spotifyId, trackName, artistName) => {
     const song = {
-        _id: new mongoose.Types.ObjectId(),
+        _id: ObjectId(spotifyId),
         spotifyId: spotifyId,
         trackName: trackName,
         artistName: artistName,
@@ -51,6 +50,15 @@ addSong = (partyId, spotifyId, trackName, artistName) => {
     return partyModel.update({_id: partyId}, {$push: {queue: song}}, {new:true, upsert:true});
 }
 
+removeSong = (partyId, sid) => {
+    return partyModel.update({_id: partyId}, {$pull: {queue: {'spotifyId': sid}}})
+}
+
+setPartyLeader = (partyId, userId) => {
+    return partyModel.update({_id, partyId}, {$set: {partyLeader: userId}});
+}
+
+
 module.exports = {
     createParty,
     findAllParties,
@@ -59,5 +67,7 @@ module.exports = {
     updateParty,
     addUserToParty,
     removeUserFromParty,
-    addSong
+    addSong,
+    removeSong,
+    setPartyLeader
 }

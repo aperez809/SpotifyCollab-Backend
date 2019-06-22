@@ -37,8 +37,7 @@ const partySchema = mongoose.Schema({
         type: [{
             trackName: String,
             artistName: String,
-            spotifyId: String,
-        }]
+            spotifyId: String}]
     }
 },
 {collection: 'Parties'});
