@@ -4,7 +4,7 @@ const ObjectId = require('mongoose').Types.ObjectId;
 
 
 createParty = (party) => {
-    return partyModel.create(party)
+    return partyModel.create(party);
 }
 
 findPartyById = (id) => {
@@ -55,7 +55,8 @@ removeSong = (partyId, sid) => {
 }
 
 setPartyLeader = (partyId, userId) => {
-    return partyModel.update({_id: partyId}, {$set: {partyLeader: userId}});
+    var userToAdd = await findUser(userId).then(user => user);
+    return partyModel.update({_id: partyId}, {$set: {partyLeader: userToAdd}});
 }
 
 upvoteSong = async(partyId, spotifyId, userId) => {
