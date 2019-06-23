@@ -7,10 +7,12 @@ const app = express();
 
 
 app.use(function(req, res, next) {
-    /*res.header("Access-Control-Allow-Origin",
-        "https://song-request-client-angular.herokuapp.com");*/
+    res.header("Access-Control-Allow-Origin",
+        "https://song-request-client-angular.herokuapp.com");
+    /*
     res.setHeader("Access-Control-Allow-Origin",
         "http://localhost:4200");
+    */
     res.setHeader("Access-Control-Allow-Headers",
         "Origin, X-Requested-With, Content-Type, Accept");
     res.setHeader("Access-Control-Allow-Methods",
