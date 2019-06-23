@@ -13,6 +13,10 @@ findUserByCredentials = (un, pw) => {
     return userModel.findOne({username: un, password: pw});
 }
 
+findUserByUsername = (un) => {
+    return userModel.findOne({username: un});
+}
+
 findAllUsers = () => {
     return userModel.find();
 }
@@ -29,6 +33,7 @@ module.exports = {
     createUser,
     findAllUsers,
     findUserByCredentials,
+    findUserByUsername,
     findUserById,
     deleteUser,
     updateUser
