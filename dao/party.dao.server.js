@@ -54,7 +54,7 @@ removeSong = (partyId, sid) => {
     return partyModel.update({_id: partyId}, {$pull: {queue: {'spotifyId': sid}}})
 }
 
-setPartyLeader = (partyId, userId) => {
+setPartyLeader = async(partyId, userId) => {
     var userToAdd = await findUser(userId).then(user => user);
     return partyModel.update({_id: partyId}, {$set: {partyLeader: userToAdd}});
 }
