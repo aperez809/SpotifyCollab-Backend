@@ -38,9 +38,9 @@ removeUserFromParty = (userId, partyId) => {
     return partyModel.update({_id: partyId}, {$pull: {attendees: {_id: userId}}});
 }
 
-addSong = (partyId, spotifyId, trackName, artistName) => {
+addSong = (partyId, spotifyId, trackName, artistName, userId) => {
     const song = {
-        _id: ObjectId(spotifyId),
+        _id: ObjectId(userId),
         spotifyId: spotifyId,
         trackName: trackName,
         artistName: artistName,

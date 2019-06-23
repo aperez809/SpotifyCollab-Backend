@@ -55,7 +55,8 @@ module.exports = app => {
         partyDao.addSong(req.params["partyId"],
                                 req.body["spotifyId"],
                                 req.body["trackName"],
-                                req.body["artistName"])
+                                req.body["artistName"],
+                                req.body["userId"])
             .then(status => {
                 console.log(status);
                 res.send(status);
